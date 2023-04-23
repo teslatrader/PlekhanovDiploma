@@ -1,3 +1,9 @@
 pandas
 numpy
 matplotlib
+Google-Images-Search
+bing-image-downloader
+Pillow
+tensorflow
+face_recognition
+scikit-learn

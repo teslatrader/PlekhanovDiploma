@@ -84,6 +84,7 @@ def get_random_photo(person_name):
     img = Image.open(img_name)
     img.show()
 
+
 def get_prediction(image_name: str):
     img_test = image_prepocessing(image_name)
     embedding = get_embedding(img_test)

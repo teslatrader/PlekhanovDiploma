@@ -5,18 +5,26 @@ import matplotlib.patches as patches
 import face_recognition as fr
 import os
 
-# setup path variables
+# setup variables
 path_inputs = '../inputs'
 persons = os.listdir(path_inputs)
+person_id = 0
 
 # create empty dataframe with target and features columns names
 df_name = 'data_set.pkl'
 columns_name = [f'x_{idx}' for idx in range(128)]
-columns_name.insert(0, 'target')
+columns_name.insert(0, 'person name')
+columns_name.insert(1, 'target')
 df = pd.DataFrame(columns=columns_name)
+
+# create dataframe for person and its id matching
+df_person_ids_name = 'df_person_id.pkl'
+columns_name = ['person', 'person_id']
+df_person_ids = pd.DataFrame(columns=columns_name)
 
 # filling dataframe via iteration through each folder with images
 for person in persons:
+    df_person_ids.loc[len(df_person_ids)] = [person, person_id]
     persons_path = f'{path_inputs}/{person}'
     imgs = os.listdir(persons_path)
     for image in imgs:
@@ -27,10 +35,12 @@ for person in persons:
             face_embedding = fr.face_encodings(img)[0]
             face_embedding = face_embedding.tolist()
             face_embedding.insert(0, person)
+            face_embedding.insert(1, person_id)
 
             # append embedding to dataframe
             df.loc[len(df)] = face_embedding
 
+    person_id += 1
             # visualization of face frame (just for check if it works)
             # fl = face_location[0]
             # y1 = fl[0]
@@ -53,5 +63,6 @@ for person in persons:
             #     ')
 
 df.to_pickle(df_name)
+df_person_id.to_pickle(df_person_id_name)
 # print(df)
 # print(df.shape)

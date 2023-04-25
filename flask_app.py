@@ -22,6 +22,8 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 app = Flask(__name__)
 app.secret_key = 'lkjfpeiojmndsljk=-23j90ifk32-kUJLKdmnf09awejfLJU#$LKJELfjlklf094-3=-=f$oii0$9sj23'
 
+image_name, path_dest = '', ''
+
 
 def image_prepocessing(image: str, side_size=256):
     try:
@@ -76,6 +78,7 @@ def match_person(df_matches, person_id):
 
 
 def get_random_photo(person_name):
+    global path_dest
     query = f'face of {person_name}'
     path_to_save = f'./static'
     download(
@@ -99,8 +102,8 @@ def get_random_photo(person_name):
     return img_name
 
 
-def get_prediction(image_name: str):
-    img_test = image_prepocessing(image_name)
+def get_prediction(im_name: str):
+    img_test = image_prepocessing(im_name)
     embedding = get_embedding(img_test)
     print(f'Embedding of test photo:\n{embedding}')
 
@@ -115,8 +118,8 @@ def get_prediction(image_name: str):
 
     person_name = match_person(df_person_ids, prediction[0])
     print(f'Yours highest SUPERSTAR likelihood with {person_name}')
-    predicted_image = get_random_photo(person_name)
-    return person_name, round(y_pred_probability, 2), predicted_image
+    pred_image = get_random_photo(person_name)
+    return person_name, round(y_pred_probability, 2), pred_image
 
 
 def allowed_file(filename):
@@ -125,6 +128,7 @@ def allowed_file(filename):
 
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
+    global image_name, path_dest
     if request.method == 'POST':
         # check if the post request has the file part
         if 'file' not in request.files:
@@ -136,6 +140,10 @@ def upload_file():
         if file.filename == '':
             return redirect(request.url)
         if file and allowed_file(file.filename):
+            if os.path.exists(image_name):
+                os.remove(image_name)
+            if os.path.exists(path_dest):
+                shutil.rmtree(path_dest)
             image_name = secure_filename(file.filename).split('.')[0] + '.jpg'
             image_name = f'./static/{image_name}'
             file.save(image_name)

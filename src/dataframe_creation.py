@@ -40,8 +40,7 @@ for person in persons:
             # append embedding to dataframe
             df.loc[len(df)] = face_embedding
 
-    person_id += 1
-            # visualization of face frame (just for check if it works)
+            # # visualization of face frame (just for check if it works)
             # fl = face_location[0]
             # y1 = fl[0]
             # y2 = fl[2]
@@ -61,8 +60,9 @@ for person in persons:
             #     Width: {width}\n\
             #     Height: {height}\
             #     ')
+    person_id += 1
 
 df.to_pickle(df_name)
-df_person_id.to_pickle(df_person_id_name)
+df_person_ids.to_pickle(df_person_ids_name)
 # print(df)
 # print(df.shape)

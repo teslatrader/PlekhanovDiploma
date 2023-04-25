@@ -45,11 +45,11 @@ def image_prepocessing(imgs_list: list, current_dir: str, side_size=256):
 
 def get_images(
         list_to_load: list,
-        quantity_to_load = 5,
-        adult_filter_off = True,
-        connection_timeout = 60,
-        filter_of_images = 'photo',
-        verbose = True
+        quantity_to_load=5,
+        adult_filter_off=True,
+        connection_timeout=60,
+        filter_of_images='photo',
+        verbose=True
 ):
     for person in list_to_load[:3]:
         try:

@@ -50,16 +50,12 @@ def get_embedding(image: str):
     face_location = fr.face_locations(img, number_of_times_to_upsample=1)
     qty_of_faces = len(face_location)
     if qty_of_faces == 1:
-        # creating face embedding and linking it with target person
+        # creating face embedding
         face_embedding = fr.face_encodings(img)[0]
         face_embedding = face_embedding.tolist()
-        # face_embedding.insert(0, person)
-        # face_embedding.insert(1, person_id)
 
         # create dataframe with embedding to predict
         columns_name = [f'x_{idx}' for idx in range(128)]
-        # columns_name.insert(0, 'person name')
-        # columns_name.insert(1, 'target')
         df_test = pd.DataFrame(columns=columns_name)
         df_test.loc[len(df_test)] = face_embedding
         return df_test
@@ -104,5 +100,6 @@ def get_prediction(image_name: str):
 if __name__ == '__main__':
     chris_bale_test = 'CB_test.jpg'
     my_face_test = 'FK_test.jpg'
+    chris_hem_test = 'Chris_Hem_test.jpg'
     # get_prediction(chris_bale_test)
-    get_prediction(my_face_test)
+    get_prediction(chris_hem_test)

@@ -7,4 +7,5 @@ Pillow
 tensorflow
 face_recognition
 scikit-learn
-statsmodels
+Flask
+werkzeug

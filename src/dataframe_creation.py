@@ -65,4 +65,4 @@ for person in persons:
 df.to_pickle(df_name)
 df_person_ids.to_pickle(df_person_ids_name)
 # print(df)
-# print(df.shape)
+# print(df_person_ids)

@@ -1,7 +1,7 @@
 men_to_load = [
-    'Christian Bale',
-    'Vin Diesel',
-    'Chris Hemsworth',
+    # 'Christian Bale',
+    # 'Vin Diesel',
+    # 'Chris Hemsworth',
     'Ryan Reynolds',
     'Tom Hiddleston',
     'Chris Evans',

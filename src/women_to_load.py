@@ -1,7 +1,7 @@
 women_to_load = [
-    'Emma Watson',
-    'Jennifer Lawrence',
-    'Selena Gomez',
+    # 'Emma Watson',
+    # 'Jennifer Lawrence',
+    # 'Selena Gomez',
     'Angelina Jolie',
     'Anne Hathaway',
     'Scarlett Johansson',

@@ -30,7 +30,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, stratif
 # print(model.summary())
 model = LogisticRegression(multi_class='multinomial')
 model.fit(X_train, y_train)
-print(f'X_test\n{X_test}')
+# print(f'X_test\n{X_test}')
 y_pred = model.predict(X_test)
 f_1 = f1_score(y_test, y_pred, average='micro')
 mae = mean_absolute_error(y_test, y_pred)

@@ -99,6 +99,6 @@ def get_prediction(image_name: str):
 
 if __name__ == '__main__':
     my_face_test = 'FK_test.jpg'
-    chris_hem_test = 'Chris_Hem_test.jpg'
+    chris_hem_test = '_Chris_Hem_test.jpg'
     get_prediction(my_face_test)
     get_prediction(chris_hem_test)

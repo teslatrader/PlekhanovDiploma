@@ -9,6 +9,8 @@ from flask import Flask, request, redirect, render_template
 from werkzeug.utils import secure_filename
 from bing_image_downloader.downloader import download
 import shutil
+from src.men_to_load import men_to_load
+from src.women_to_load import women_to_load
 
 
 # load the model from disk
@@ -22,7 +24,9 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 app = Flask(__name__)
 app.secret_key = 'lkjfpeiojmndsljk=-23j90ifk32-kUJLKdmnf09awejfLJU#$LKJELfjlklf094-3=-=f$oii0$9sj23'
 
-image_name, path_dest = '', ''
+image_name, path_dest = '', '',
+list_of_men = men_to_load
+list_of_women = women_to_load
 
 
 def image_prepocessing(image: str, side_size=256):
@@ -68,7 +72,6 @@ def get_embedding(image: str):
     else:
         os.remove(image)
         return 2
-
 
 
 def match_person(df_matches, person_id):
@@ -128,7 +131,7 @@ def allowed_file(filename):
 
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
-    global image_name, path_dest
+    global image_name, path_dest, list_of_men, list_of_women
     if request.method == 'POST':
         # check if the post request has the file part
         if 'file' not in request.files:
@@ -156,7 +159,7 @@ def upload_file():
             return render_template('prediction.html', person_name=person_name, probability=probability,
                                    predicted_image=predicted_image, original_image=image_name)
     elif request.method == 'GET':
-        return render_template('index.html')
+        return render_template('index.html', list_of_men=list_of_men, list_of_women=list_of_women)
 
 
 @app.route('/no_face')

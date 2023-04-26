@@ -14,7 +14,7 @@
     </style>
 </head>
 <body>
-    <div align="center">
+    <div align="center" style="width: 100%;">
         <h1>
             <br>
             Welcome to MySuperstarcity!
@@ -24,14 +24,36 @@
             <br>
             <br>
         </h1>
-        <h2>
-            Upload photo to compare (png, jpg, jpeg extensions):
-        </h2>
-        <br>
-        <form method=post enctype=multipart/form-data>
-          <input type=file name=file>
-          <input type=submit value=Upload>
-        </form>
+        <div align="center" style="width: 20%; float: left;">
+            <h3>
+                We have the following honour men in our model:
+            </h3>
+            <ul align="left">
+                {% for person in list_of_men %}
+                    {{ person }} <br>
+                {% endfor %}
+            </ul>
+        </div>
+        <div align="center" style="width: 60%; float: left;">
+            <h2>
+                Upload photo to compare (png, jpg, jpeg extensions):
+            </h2>
+            <br>
+            <form method=post enctype=multipart/form-data>
+              <input type=file name=file>
+              <input type=submit value=Upload>
+            </form>
+        </div>
+        <div align="center" style="width: 20%; float: right;">
+            <h3>
+                We have the following beautiful women in our model:
+            </h3>
+            <ul align="left">
+                {% for person in list_of_women %}
+                    {{ person }} <br>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
 </body>
 </html>

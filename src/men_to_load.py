@@ -34,7 +34,7 @@ men_to_load = [
     'Danila Kozlovsky',
     'Alexander PETROV',
     'Ivan Okhlobystin',
-    'Yuri Nikulin'
+    'Yuri Nikulin',
     'Georgiy Vitsin',
     'Yevgeny Morgunov'
 ]

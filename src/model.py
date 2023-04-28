@@ -39,17 +39,6 @@ print(f'mse = {round(mse, 2)}')
 print(f'mae = {round(mae, 2)}')
 print(f'mape = {round(mape, 2)}')
 
-# y_pred_proba = model.predict_proba(X_test)[::, 1]
-# print(y_pred_proba)
-#
-# fpr, tpr, _ = roc_curve(y_test, y_pred_proba)
-#
-# # create ROC curve
-# plt.plot(fpr, tpr)
-# plt.ylabel('True Positive Rate')
-# plt.xlabel('False Positive Rate')
-# plt.show()
-
 # save trained model
 model_name = 'model_logreg'
 pickle.dump(model, open(model_name, 'wb'))

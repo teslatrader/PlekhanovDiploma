@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import f1_score, mean_absolute_error, mean_squared_error, mean_absolute_percentage_error
+from sklearn.metrics import f1_score, mean_squared_error, mean_absolute_error, mean_absolute_percentage_error, roc_curve
 import tensorflow as tf
 from PIL import Image
 import face_recognition as fr
@@ -26,8 +26,6 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, stratif
 # plt.xticks(columns_qty, corr.columns)
 # plt.yticks(columns_qty, corr.columns)
 # plt.show()
-# model = sm.Logit(y_train, sm.add_constant(X_train)).fit()
-# print(model.summary())
 model = LogisticRegression(multi_class='multinomial')
 model.fit(X_train, y_train)
 # print(f'X_test\n{X_test}')
@@ -36,12 +34,23 @@ f_1 = f1_score(y_test, y_pred, average='micro')
 mae = mean_absolute_error(y_test, y_pred)
 mse = mean_squared_error(y_test, y_pred)
 mape = mean_absolute_percentage_error(y_test, y_pred)
-print(f'f1 = {f_1}')
-print(f'mae = {mae}')
-print(f'mse = {mse}')
-print(f'mape = {mape}')
+print(f'f1 = {round(f_1, 2)}')
+print(f'mse = {round(mse, 2)}')
+print(f'mae = {round(mae, 2)}')
+print(f'mape = {round(mape, 2)}')
+
+# y_pred_proba = model.predict_proba(X_test)[::, 1]
+# print(y_pred_proba)
+#
+# fpr, tpr, _ = roc_curve(y_test, y_pred_proba)
+#
+# # create ROC curve
+# plt.plot(fpr, tpr)
+# plt.ylabel('True Positive Rate')
+# plt.xlabel('False Positive Rate')
+# plt.show()
 
 # save trained model
-model_name = 'model_logreg'
-pickle.dump(model, open(model_name, 'wb'))
+# model_name = 'model_logreg'
+# pickle.dump(model, open(model_name, 'wb'))
 

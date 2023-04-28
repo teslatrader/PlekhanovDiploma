@@ -51,6 +51,6 @@ print(f'mape = {round(mape, 2)}')
 # plt.show()
 
 # save trained model
-# model_name = 'model_logreg'
-# pickle.dump(model, open(model_name, 'wb'))
+model_name = 'model_logreg'
+pickle.dump(model, open(model_name, 'wb'))
 
